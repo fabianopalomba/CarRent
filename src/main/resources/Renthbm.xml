@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.rentfegh.model.Rent" table="rent" schema="feghrent">
+        <composite-id mapped="true" class="com.rentfegh.model.RentPK">
+            <key-property name="email">
+                <column name="email" sql-type="varchar(45)" length="45"/>
+            </key-property>
+            <key-property name="id">
+                <column name="id" sql-type="int"/>
+            </key-property>
+            <key-property name="initDate">
+                <column name="initDate" sql-type="date"/>
+            </key-property>
+        </composite-id>
+        <property name="finDate">
+            <column name="finDate" sql-type="date" />
+        </property>
+    </class>
+</hibernate-mapping>
