@@ -5,8 +5,8 @@
 <hibernate-mapping>
 
     <class name="com.rentfegh.model.Car" table="cars" schema="feghrent">
-        <id name="cars_id">
-            <column name="cars_id" sql-type="int"/>
+        <id name="carsId">
+            <column name="carsid" sql-type="int"/>
         </id>
         <property name="brand">
             <column name="brand" sql-type="varchar(45)" length="45"/>

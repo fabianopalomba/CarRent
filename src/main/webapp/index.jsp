@@ -1,22 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: SI2001
-  Date: 22/10/2020
-  Time: 10:22
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-
-<%
-    Object obj = request.getSession().getAttribute("email");
-    out.print("Benvenuto " + obj);
-%>
+<h1>Benvenuto ${sessionScope.email}</h1>
 <a href="UserServlet">Visualizza i tuoi dati</a>
 <br/>
 <a href="car-search.jsp">Effettua un noleggio</a>

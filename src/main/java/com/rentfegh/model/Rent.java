@@ -11,6 +11,9 @@ public class Rent {
     private Date initDate;
     private Date finDate;
 
+    public Rent() {
+    }
+
     public Rent(String email, int id, Date initDate, Date finDate) {
         this.email = email;
         this.id = id;

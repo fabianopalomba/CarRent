@@ -5,18 +5,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "cars", schema = "feghrent")
 public class Car {
-    private int cars_id;
+    private int carsId;
     private String brand;
     private String model;
 
     @Id
     @Column(name = "cars_id", nullable = false)
-    public int getCars_id() {
-        return cars_id;
+    public int getCarsId() {
+        return carsId;
     }
 
-    public void setCars_id(int cars_id) {
-        this.cars_id = cars_id;
+    public void setCarsId(int carsId) {
+        this.carsId = carsId;
     }
 
     @Basic
@@ -46,7 +46,7 @@ public class Car {
 
         Car car = (Car) o;
 
-        if (cars_id != car.cars_id) return false;
+        if (carsId != car.carsId) return false;
         if (brand != null ? !brand.equals(car.brand) : car.brand != null) return false;
         if (model != null ? !model.equals(car.model) : car.model != null) return false;
 
@@ -55,7 +55,7 @@ public class Car {
 
     @Override
     public int hashCode() {
-        int result = cars_id;
+        int result = carsId;
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
         result = 31 * result + (model != null ? model.hashCode() : 0);
         return result;

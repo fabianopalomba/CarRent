@@ -1,17 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SI2001
-  Date: 26/10/2020
-  Time: 11:23
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Registration failed</title>
 </head>
 <body>
-    <h1>Errore: mail gi√† presente nel sistema</h1>
-<a href="home.jsp">Torna alla home</a>
+    <h1>Errore: mail gi‡ presente nel sistema</h1>
+<a href="registration.jsp">Torna alla home</a>
 </body>
 </html>

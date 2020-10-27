@@ -20,12 +20,12 @@ public class UserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = (String)request.getSession().getAttribute("email");
         if(email==""||email==null){
-            request.getRequestDispatcher("home.jsp").forward(request,response);
+            request.getRequestDispatcher("registration.jsp").forward(request,response);
         }
         else{
             User user = userDAOInterface.viewUser(email);
             request.getSession().setAttribute("user", user);
-            request.getRequestDispatcher("view-data.jsp").forward(request,response);
+            response.sendRedirect("view-data.jsp");
         }
     }
 

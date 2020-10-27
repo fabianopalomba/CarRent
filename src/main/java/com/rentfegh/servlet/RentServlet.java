@@ -29,12 +29,9 @@ public class RentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = this.sessionFactory.openSession();
         Integer id = parseInt(request.getParameter("selected"));
-        System.out.println(id);
         String dataini = (String)request.getSession().getAttribute("dataini");
-        System.out.println(dataini);
         String datafine = (String)request.getSession().getAttribute("datafine");
         String email = (String)request.getSession().getAttribute("email");
-        System.out.println(email);
         Date dateinit = Date.valueOf(dataini);
         Date datefinish = Date.valueOf(datafine);
         try {

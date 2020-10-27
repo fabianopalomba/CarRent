@@ -3,10 +3,26 @@ package com.rentfegh.servlet;
 import com.rentfegh.dao.UserDAO;
 import com.rentfegh.dao.UserDAOInterface;
 import com.rentfegh.model.Car;
+import com.rentfegh.model.Rent;
 import com.rentfegh.model.User;
 import com.rentfegh.util.HibernateUtil;
+import javafx.concurrent.Task;
 import org.hibernate.*;
+import org.hibernate.Criteria;
+import com.rentfegh.model.Car;
+import com.rentfegh.model.Rent;
+import com.rentfegh.model.RentPK;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.criteria.*;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,7 +48,6 @@ public class SearchServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Session session = this.sessionFactory.openSession();
         String dataini = request.getParameter("dataini");
-        System.out.println(dataini);
         String datafine = request.getParameter("datafine");
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -40,16 +55,15 @@ public class SearchServlet extends HttpServlet {
             Date datefinish = formatter.parse(datafine);
             if (datefinish.after(dateinit) && dateinit.after(new Date())) {
                 try {
-                    String hql = "select A.cars_id,A.brand,A.model from feghrent.cars as A join feghrent.rent as P on A.cars_id=P.id where A.CARS_ID NOT IN (" +
-                            "SELECT C.CARS_ID FROM feghrent.cars as c  left join feghrent.rent as r on c.cars_id=r.id where :dateinit  BETWEEN R.INITDATE AND R.FINDATE UNION"+
-                    " SELECT C.CARS_ID FROM feghrent.cars as c  left join feghrent.rent as r on c.cars_id=r.id where :datefinish  BETWEEN R.INITDATE AND R.FINDATE ) UNION" +
-                    " SELECT C.cars_id,C.brand,C.model FROM feghrent.cars as c  left join feghrent.rent as r on c.cars_id=r.id where initDate is null and finDate is null";
-                    SQLQuery query = session.createSQLQuery(hql);
-                    query.setParameter("dateinit", dateinit);
-                    query.setParameter("datefinish", datefinish);
-                    query.addEntity(Car.class);
-                     List<Car> results = query.list();
-                    request.getSession().setAttribute("cars",results);
+                    Criteria criteria = session.createCriteria(Rent.class);
+                    criteria.add(Restrictions.and((Restrictions.lt("initDate",dateinit)),(Restrictions.gt("finDate",dateinit))));
+                    Criteria criteria1 = session.createCriteria(Rent.class);
+                    criteria1.add(Restrictions.and((Restrictions.lt("initDate",datefinish)),(Restrictions.gt("finDate",datefinish))));
+                    Projection p = Projections.property("id");
+                    List<Integer> rent = criteria.setProjection(p).list();
+                    rent.addAll(criteria1.setProjection(p).list());
+                    List<Car> car = session.createCriteria(Car.class).add(Restrictions.not(Restrictions.in("id",rent))).list();
+                    request.getSession().setAttribute("cars",car);
                     request.getSession().setAttribute("dataini",dataini);
                     request.getSession().setAttribute("datafine",datafine);
                     response.sendRedirect("select-car.jsp");

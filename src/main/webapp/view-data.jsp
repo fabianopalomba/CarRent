@@ -1,15 +1,6 @@
-<%@ page import="com.rentfegh.model.User" %><%--
-  Created by IntelliJ IDEA.
-  User: SI2001
-  Date: 22/10/2020
-  Time: 14:52
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" import="com.rentfegh.model.User"
-%>
+<%@ page isELIgnored="false" language="java" contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>View your data</title>
@@ -24,9 +15,6 @@
     <div id="container">
         <div id="content">
             <table>
-<%
-    User user = (User)request.getSession().getAttribute("user");
-%>
                 <tr>
                     <th>first name</th>
                     <th>last name</th>
@@ -38,13 +26,13 @@
 
                 </tr>
                 <tr>
-                    <td> <%= user.getFirstName() %> </td>
-                    <td> <%= user.getLastName() %> </td>
-                    <td> <%= user.getPhone() %> </td>
-                    <td> <%= user.getEmail() %> </td>
-                    <td> <%= user.getPassword() %> </td>
+                    <td> ${sessionScope.user.firstName} </td>
+                    <td> ${sessionScope.user.lastName} </td>
+                    <td> ${sessionScope.user.phone} </td>
+                    <td> ${sessionScope.user.email} </td>
+                    <td> ${sessionScope.user.password} </td>
 
-                    <td> <a href="edit-data.jsp">update</a></td>
+                    <td> <a href="edit-user-data.jsp">update</a></td>
                     <td> <a href="DeleteUser" onclick="if(!(confirm('Are you sure you wanna delete?')))return false">delete</a></td>
                 </tr>
 
