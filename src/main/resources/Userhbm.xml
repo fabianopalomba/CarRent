@@ -9,16 +9,16 @@
             <column name="email" sql-type="varchar(45)" length="45"/>
         </id>
         <property name="firstName">
-            <column name="firstName" sql-type="varchar(45)" length="45"/>
+            <column name="firstName" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
         <property name="lastName">
-            <column name="lastName" sql-type="varchar(45)" length="45"/>
+            <column name="lastName" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
         <property name="phone">
-            <column name="phone" sql-type="varchar(10)" length="10"/>
+            <column name="phone" sql-type="varchar(10)" length="10" not-null="true"/>
         </property>
         <property name="password">
-            <column name="password" sql-type="varchar(45)" length="45"/>
+            <column name="password" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -10,7 +10,6 @@ public interface UserDAOInterface {
     void updateUser(User user);
     void deleteUser(String email);
     User viewUser(String email);
-    List<User> findAllUsers();
+
     boolean validate(String userName, String password);
-    List<Car> findAllCars();
 }

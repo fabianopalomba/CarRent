@@ -14,8 +14,8 @@ import java.io.IOException;
 @WebServlet("/EditServlet")
 public class EditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserDAOInterface userDAOInterface = UserDAO.getInstance();
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private final UserDAOInterface userDAOInterface = UserDAO.getInstance();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String phone = request.getParameter("phone");

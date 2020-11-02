@@ -5,19 +5,25 @@
 <hibernate-mapping>
 
     <class name="com.rentfegh.model.Rent" table="rent" schema="feghrent">
-        <composite-id mapped="true" class="com.rentfegh.model.RentPK">
-            <key-property name="email">
-                <column name="email" sql-type="varchar(45)" length="45"/>
-            </key-property>
-            <key-property name="id">
-                <column name="id" sql-type="int"/>
-            </key-property>
+        <composite-id name="primaryKey" class="com.rentfegh.model.RentPK">
+            <key-property name="user" type="text" column="email" />
+            <key-property name="car" type="int" column="id" />
             <key-property name="initDate">
-                <column name="initDate" sql-type="date"/>
+                <column name="initDate" sql-type="date" not-null="true"/>
             </key-property>
         </composite-id>
+        <component name="user">
+            <many-to-one name="email" class="com.rentfegh.model.User" insert="false" update="false">
+                <column name="email" not-null="true" sql-type="text" length="45"/>
+            </many-to-one>
+        </component>
+        <component name="car">
+            <many-to-one name="carsid" class="com.rentfegh.model.Car" insert="false" update="false">
+                <column name="id" not-null="true" sql-type="int"/>
+            </many-to-one>
+        </component>
         <property name="finDate">
-            <column name="finDate" sql-type="date" />
+            <column name="finDate" sql-type="date" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

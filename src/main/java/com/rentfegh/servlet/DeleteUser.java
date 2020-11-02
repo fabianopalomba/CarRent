@@ -14,12 +14,12 @@ import java.io.IOException;
 public class DeleteUser extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private UserDAOInterface userDAOInterface = UserDAO.getInstance();
+    private final UserDAOInterface userDAOInterface = UserDAO.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = (String)request.getSession().getAttribute("email");
         System.out.println(email);
-        if (email==""||email==null){
+        if (email.equals("") ||email==null){
             request.getRequestDispatcher("/").forward(request,response);
     }
         else{

@@ -1,88 +1,76 @@
 package com.rentfegh.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
+@Table(name = "rent", schema = "feghrent")
 @IdClass(RentPK.class)
-public class Rent {
-    private String email;
-    private int id;
-    private Date initDate;
+@AssociationOverrides({
+        @AssociationOverride(name = "primaryKey.user",
+                joinColumns = @JoinColumn(name = "email", referencedColumnName = "email")),
+        @AssociationOverride(name = "primaryKey.car",
+                joinColumns = @JoinColumn(name= "id", referencedColumnName = "carsid")) })
+
+public class Rent implements Serializable{
+
+    private RentPK primaryKey = new RentPK();
     private Date finDate;
 
-    public Rent() {
-    }
-
-    public Rent(String email, int id, Date initDate, Date finDate) {
-        this.email = email;
-        this.id = id;
-        this.initDate = initDate;
-        this.finDate = finDate;
-    }
-
-    @Id
-    @Column(name = "email", nullable = false, length = 45)
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Id
-    @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    @Id
-    @Column(name = "initDate", nullable = false)
-    public Date getInitDate() {
-        return initDate;
-    }
-
-    public void setInitDate(Date initDate) {
-        this.initDate = initDate;
-    }
-
-    @Basic
     @Column(name = "finDate", nullable = false)
     public Date getFinDate() {
         return finDate;
     }
-
     public void setFinDate(Date finDate) {
         this.finDate = finDate;
+    }
+
+
+    @EmbeddedId
+    public RentPK getPrimaryKey(){
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(RentPK primaryKey) {
+        this.primaryKey = primaryKey;
+    }
+    @Transient
+    public User getUser(){
+        return getPrimaryKey().getUser();
+    }
+    public void setUser(User user){
+        getPrimaryKey().setUser(user);
+    }
+    @Transient
+    public Car getCar(){
+        return getPrimaryKey().getCar();
+    }
+    public void setCar(Car car){
+        getPrimaryKey().setCar(car);
+    }
+
+    @Transient
+    public Date getInitDate(){
+        return getPrimaryKey().getInitDate();
+    }
+    public void setInitDay(Date d){
+        getPrimaryKey().setInitDate(d);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Rent rent = (Rent) o;
-
-        if (id != rent.id) return false;
-        if (email != null ? !email.equals(rent.email) : rent.email != null) return false;
-        if (initDate != null ? !initDate.equals(rent.initDate) : rent.initDate != null) return false;
-        if (finDate != null ? !finDate.equals(rent.finDate) : rent.finDate != null) return false;
-
-        return true;
+        return primaryKey.equals(rent.primaryKey) &&
+                finDate.equals(rent.finDate);
     }
 
     @Override
     public int hashCode() {
-        int result = email != null ? email.hashCode() : 0;
-        result = 31 * result + id;
-        result = 31 * result + (initDate != null ? initDate.hashCode() : 0);
-        result = 31 * result + (finDate != null ? finDate.hashCode() : 0);
-        return result;
+        return Objects.hash(primaryKey, finDate);
     }
 }
 

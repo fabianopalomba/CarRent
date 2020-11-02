@@ -9,11 +9,15 @@
         <property name="connection.username">root</property>
         <property name="connection.password">password</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
         <mapping class="com.rentfegh.model.Car"/>
         <mapping resource="Carhbm.xml"/>
-        <mapping class="com.rentfegh.model.Rent"/>
-        <mapping resource="Renthbm.xml"/>
         <mapping class="com.rentfegh.model.User"/>
         <mapping resource="Userhbm.xml"/>
+        <mapping class="com.rentfegh.model.Rent"/>
+        <mapping resource="Renthbm.xml"/>
+        <mapping class="com.rentfegh.model.RentPK"/>
+
     </session-factory>
 </hibernate-configuration>

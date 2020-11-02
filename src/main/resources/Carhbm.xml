@@ -3,16 +3,15 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-
     <class name="com.rentfegh.model.Car" table="cars" schema="feghrent">
-        <id name="carsId">
+        <id name="carsid">
             <column name="carsid" sql-type="int"/>
         </id>
         <property name="brand">
-            <column name="brand" sql-type="varchar(45)" length="45"/>
+            <column name="brand" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
         <property name="model">
-            <column name="model" sql-type="varchar(45)" length="45"/>
+            <column name="model" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
     </class>
 </hibernate-mapping>

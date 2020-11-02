@@ -14,19 +14,20 @@ import java.io.IOException;
 @WebServlet("/RegisterUser")
 public class RegisterUser extends HttpServlet {
         private static final long serialVersionUID = 1L;
-        private UserDAOInterface userDAOInterface = UserDAO.getInstance();
+        private final UserDAOInterface userDAOInterface = UserDAO.getInstance();
 
         protected void doPost(HttpServletRequest request, HttpServletResponse response)
-                throws ServletException, IOException {
+                throws IOException {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String phone = request.getParameter("phone");
             String email = request.getParameter("email");
             String password = request.getParameter("password");
-            if (userDAOInterface.viewUser(email) != null) {
+            if (userDAOInterface.viewUser(email) == null) {
                 User user = new User(firstName, lastName, phone, email, password);
                 userDAOInterface.saveUser(user);
-                response.sendRedirect(request.getContextPath() + "/");
+                request.getSession().setAttribute("email", email);
+                response.sendRedirect(request.getContextPath() + "/index.jsp");
             }
             else {
                 response.sendRedirect("registration-failed.jsp");

@@ -1,20 +1,15 @@
 package com.rentfegh.dao;
 
-import com.rentfegh.model.Car;
 import com.rentfegh.model.User;
 import com.rentfegh.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import com.rentfegh.model.User;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.List;
 
 public class UserDAO implements UserDAOInterface {
 
     private static UserDAO userDAO = null;
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
 
     @Override
@@ -53,26 +48,6 @@ public class UserDAO implements UserDAOInterface {
         transaction.commit();
         session.close();
         return user;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
-        Session session = this.sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        List<User> userList = session.createCriteria(User.class).list();
-        transaction.commit();
-        session.close();
-        return userList;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Car> findAllCars() {
-        Session session = this.sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        List<Car> carList = session.createCriteria(Car.class).list();
-        transaction.commit();
-        session.close();
-        return carList;
     }
 
 
