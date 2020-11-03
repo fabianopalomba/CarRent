@@ -18,7 +18,6 @@ public class DeleteUser extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = (String)request.getSession().getAttribute("email");
-        System.out.println(email);
         if (email.equals("") ||email==null){
             request.getRequestDispatcher("/").forward(request,response);
     }

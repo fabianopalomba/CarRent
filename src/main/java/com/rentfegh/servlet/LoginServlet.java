@@ -2,6 +2,7 @@ package com.rentfegh.servlet;
 
 import com.rentfegh.dao.UserDAO;
 import com.rentfegh.dao.UserDAOInterface;
+import com.rentfegh.model.Rent;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

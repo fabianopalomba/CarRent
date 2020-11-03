@@ -14,9 +14,17 @@ public class User implements Serializable {
     private String phone;
     private String email;
     private String password;
-    private Set<Rent> rents = new HashSet<Rent>();
+    private Set<Rent> rents = new HashSet<>();
 
     public User() {
+    }
+    @Id
+    @Column(name = "email", nullable = false, length = 45)
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Column(name = "firstName", nullable = false, length = 45)
@@ -43,16 +51,6 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    @Id
-    @Column(name = "email", nullable = false, length = 45)
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Basic
     @Column(name = "password", nullable = false, length = 45)
     public String getPassword() {
         return password;
@@ -79,14 +77,6 @@ public class User implements Serializable {
                 ", password='" + password + '\'' +
                 '}';
     }
-    @OneToMany(mappedBy = "primaryKey.user", cascade = CascadeType.ALL)
-    public Set<Rent> getRents() {
-        return rents;
-    }
-    public void setRents(Set<Rent> rents) {
-        this.rents = rents;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -100,8 +90,12 @@ public class User implements Serializable {
                 Objects.equals(rents, user.rents);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, phone, email, password, rents);
+    @OneToMany(mappedBy = "primaryKey.user",orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Rent> getRents() {
+        return rents;
     }
+    public void setRents(Set<Rent> rents) {
+        this.rents = rents;
+    }
+
 }

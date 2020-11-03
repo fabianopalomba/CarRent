@@ -12,9 +12,14 @@ public class Car implements Serializable {
     private int carsid;
     private String brand;
     private String model;
-    private Set<Rent> rents = new HashSet<Rent>();
+    private Set<Rent> rents = new HashSet<>();
 
     public Car() {
+    }
+
+    public Car(String brand, String model) {
+        this.brand = brand;
+        this.model = model;
     }
 
     public Car(int carsid, String brand, String model) {
@@ -24,7 +29,7 @@ public class Car implements Serializable {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "carsid", nullable = false)
     public int getCarsid() {
         return carsid;
@@ -49,14 +54,6 @@ public class Car implements Serializable {
         this.model = model;
     }
 
-    @OneToMany (mappedBy = "primaryKey.car", cascade = CascadeType.ALL)
-    public Set<Rent> getRents() {
-            return rents;
-        }
-    public void setRents(Set<Rent> rents1){
-            this.rents = rents1;
-        }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,8 +65,12 @@ public class Car implements Serializable {
                 Objects.equals(rents, car.rents);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(carsid, brand, model, rents);
+    @OneToMany (mappedBy = "primaryKey.car",orphanRemoval = true, cascade = CascadeType.ALL)
+    public Set<Rent> getRents() {
+        return rents;
     }
+    public void setRents(Set<Rent> rents1){
+        this.rents = rents1;
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.rentfegh.dao;
 
+import com.rentfegh.model.Rent;
 import com.rentfegh.model.User;
 import com.rentfegh.util.HibernateUtil;
 import org.hibernate.Session;
