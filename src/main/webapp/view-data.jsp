@@ -7,6 +7,9 @@
     <title>View your data</title>
 </head>
 <body>
+<c:forEach items="${sessionScope.rents}" var="rents">
+    <c:out value="${rents.toString()}"></c:out>
+</c:forEach>
     <div id="container">
         <div id="content">
             <table class="table">
@@ -36,6 +39,5 @@
         </div>
     </div>
 
-</table>
 </body>
 </html>

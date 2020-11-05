@@ -2,9 +2,7 @@ package com.rentfegh.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "cars", schema = "feghrent")
@@ -12,7 +10,7 @@ public class Car implements Serializable {
     private int carsid;
     private String brand;
     private String model;
-    private Set<Rent> rents = new HashSet<>();
+    private List<Rent> rents = new ArrayList<>();
 
     public Car() {
     }
@@ -66,11 +64,19 @@ public class Car implements Serializable {
     }
 
     @OneToMany (mappedBy = "primaryKey.car",orphanRemoval = true, cascade = CascadeType.ALL)
-    public Set<Rent> getRents() {
+    public List<Rent> getRents() {
         return rents;
     }
-    public void setRents(Set<Rent> rents1){
+    public void setRents(List<Rent> rents1){
         this.rents = rents1;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carsid=" + carsid +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                '}';
+    }
 }

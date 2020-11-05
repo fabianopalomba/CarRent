@@ -1,5 +1,8 @@
 package com.rentfegh.model;
 
+import com.rentfegh.dao.RentDAO;
+import com.rentfegh.dao.RentDAOInterface;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -55,7 +58,6 @@ public class Rent implements Serializable{
     public void setCar(Car car){
         getPrimaryKey().setCar(car);
     }
-
     @Transient
     public Date getInitDate(){
         return getPrimaryKey().getInitDate();
@@ -71,6 +73,14 @@ public class Rent implements Serializable{
         Rent rent = (Rent) o;
         return primaryKey.equals(rent.primaryKey) &&
                 finDate.equals(rent.finDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Rent{" +
+                primaryKey.toString() +
+                ", finDate=" + finDate +
+                '}';
     }
 }
 

@@ -23,7 +23,6 @@ public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private final UserDAOInterface userDAOInterface = UserDAO.getInstance();
     private final RentDAOInterface rentDAOInterface = RentDAO.getInstance();
-    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = (String)request.getSession().getAttribute("email");
@@ -32,10 +31,9 @@ public class UserServlet extends HttpServlet {
         }
         else{
             User user = userDAOInterface.viewUser(email);
-            List<Rent> rents = rentDAOInterface.rentByEmail(email);
-            Session session = this.sessionFactory.openSession();
-            System.out.println(rents);
             request.getSession().setAttribute("user", user);
+            List<Rent> rents = rentDAOInterface.rentByEmail(email);
+            request.getSession().setAttribute("rents",rents);
             response.sendRedirect("view-data.jsp");
         }
     }

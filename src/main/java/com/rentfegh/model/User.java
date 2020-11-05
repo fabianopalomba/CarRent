@@ -2,9 +2,7 @@ package com.rentfegh.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users", schema = "feghrent")
@@ -14,7 +12,7 @@ public class User implements Serializable {
     private String phone;
     private String email;
     private String password;
-    private Set<Rent> rents = new HashSet<>();
+    private List<Rent> rents = new ArrayList<>();
 
     public User() {
     }
@@ -91,10 +89,10 @@ public class User implements Serializable {
     }
 
     @OneToMany(mappedBy = "primaryKey.user",orphanRemoval = true, cascade = CascadeType.ALL)
-    public Set<Rent> getRents() {
+    public List<Rent> getRents() {
         return rents;
     }
-    public void setRents(Set<Rent> rents) {
+    public void setRents(List<Rent> rents) {
         this.rents = rents;
     }
 

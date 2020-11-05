@@ -9,6 +9,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.ArrayList;
@@ -51,10 +52,13 @@ public class RentDAO implements RentDAOInterface{
     public List<Rent> rentByEmail(String email){
         Session session = this.sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
-        List<Rent> rent = session.createCriteria(Rent.class).add(Restrictions.eq("primaryKey.user.email",email)).list();
+        User user = session.get(User.class,email);
+        List <Rent> rent1 = user.getRents();
+        System.out.println(rent1.toString());
+        //List<Rent> rent = session.createCriteria(Rent.class).add(Restrictions.eq("primaryKey.user.email",email)).list();
         transaction.commit();
         session.close();
-        return rent;
+        return rent1;
     }
     @Override
     public List<Car> rentByDate(Date date1, Date date2) {
@@ -62,20 +66,17 @@ public class RentDAO implements RentDAOInterface{
         Transaction transaction = session.beginTransaction();
         Criteria criteria = session.createCriteria(Rent.class);
         criteria.add(Restrictions.and(Restrictions.lt("primaryKey.initDate",date1),Restrictions.gt("finDate",date1)));
+        criteria.setProjection(Projections.distinct(Projections.property("primaryKey.car")));
         Criteria criteria1 = session.createCriteria(Rent.class);
         criteria1.add(Restrictions.and(Restrictions.lt("primaryKey.initDate",date2),Restrictions.gt("finDate",date2)));
-        List<Rent> list1 = criteria.list();
+        criteria1.setProjection(Projections.distinct(Projections.property("primaryKey.car")));
+        List<Car> list1 = criteria.list();
         list1.addAll(criteria1.list());
-        List<Rent> list2 = session.createCriteria(Rent.class).list();
+        List<Car> list2 = session.createCriteria(Rent.class).setProjection(Projections.distinct(Projections.property("primaryKey.car"))).list();
         list2.removeAll(list1);
-        List<Car> id = new ArrayList();
-        for (Rent r : list2){
-            Car c = r.getCar();
-            id.add(c);
-            System.out.println(c.toString());
-        }
+        System.out.println(list2);
         transaction.commit();
         session.close();
-        return id;
+        return list2;
     }
 }
