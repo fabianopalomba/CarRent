@@ -21,7 +21,8 @@
                     <div class="col-4">
                         <input class="form-control" type="date" id="example-date-input1" name="datafine" required>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="controlla disponibilità">
+                    <div class="col-12">
+                    <input class="btn btn-primary" type="submit" value="controlla disponibilità"></div>
                 </div>
             </form>
         </div>
