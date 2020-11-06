@@ -7,12 +7,25 @@
     <title>Ricerca Auto</title>
 </head>
 <body>
-<form action="SearchServlet" method="post">
-    Data Inizio Noleggio
-    <input type="date" name="dataini" required><br/>
-    Data Fine Noleggio
-    <input type="date" name="datafine" required>
-    <input type="submit" value="controlla disponibilità">
-</form>
+<div class="container">
+    <h1>Choose the date:</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action=SearchServlet method="post">
+                <div class="form-group row">
+                    <label for="example-date-input" class="col-2 col-form-label">Data Inizio Noleggio</label>
+                    <div class="col-4">
+                        <input class="form-control" type="date" id="example-date-input" name="dataini" required>
+                    </div>
+                    <label for="example-date-input1" class="col-2 col-form-label">Data Fine Noleggio</label>
+                    <div class="col-4">
+                        <input class="form-control" type="date" id="example-date-input1" name="datafine" required>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="controlla disponibilità">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

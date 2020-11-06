@@ -7,9 +7,19 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Benvenuto ${sessionScope.email}</h1>
-<a href="UserServlet">Visualizza i tuoi dati</a>
-<br/>
-<a href="car-search.jsp">Effettua un noleggio</a>
+<div class="container">
+    <h1>Homepage</h1>
+    <div class="card">
+        <div class="card-body">
+            <div class="alert alert-primary" role="alert">
+                Benvenuto ${sessionScope.email}
+            </div>
+            <ul class="list-group list-group-horizontal">
+                <a href="UserServlet" class="list-group-item list-group-item-action">Visualizza i tuoi dati</a>
+                <a href="car-search.jsp" class="list-group-item list-group-item-action">Effettua un noleggio</a>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -31,6 +31,6 @@ public class RentServlet extends HttpServlet {
         Date datefinish = Date.valueOf(datafine);
         System.out.println(id + " " + dataini + " " + dateinit + " " + datafine + " " + datefinish + " " + email + " ");
         rentDAOInterface.saveRent(email,id,dateinit,datefinish);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("success.jsp");
     }
 }

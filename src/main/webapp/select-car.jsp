@@ -6,14 +6,25 @@
     <title>Select Car</title>
 </head>
 <body>
-<form action="RentServlet" method="post">
-<label for="selected">Choose a car:</label>
-<select id="selected" name="selected">
-    <c:forEach items="${sessionScope.cars}" var="car">
-        <option value="${car.carsid}">${car.brand} ${car.model}</option>
-    </c:forEach>
-    </select>
-<input type="submit" value="submit">
+<div class="container">
+    <h1>Choose your car:</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action=RentServlet method="post">
+                <div class="form-group row">
+                    <label for="selected">Choose a car:</label>
+                        <select class="custom-select" id="selected" name="selected">
+                            <c:forEach items="${sessionScope.cars}" var="car">
+                            <option selected>Select your car</option>
+                                <option value="${car.carsid}">${car.brand} ${car.model}</option>
+                            </c:forEach>
+                        </select>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </form>
 </body>
 </html>

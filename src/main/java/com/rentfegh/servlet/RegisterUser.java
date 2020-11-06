@@ -27,7 +27,7 @@ public class RegisterUser extends HttpServlet {
                 User user = new User(firstName, lastName, phone, email, password);
                 userDAOInterface.saveUser(user);
                 request.getSession().setAttribute("email", email);
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/success.jsp");
             }
             else {
                 response.sendRedirect("registration-failed.jsp");

@@ -15,7 +15,7 @@
         <div class="card-body">
             <form action=RegisterUser method="post">
                 <div class="form-group row">
-                    <label for="firstName" class="col-sm-2 col-form-label">First
+                    <label class="col-sm-2 col-form-label">First
                         Name</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" name="firstName"
@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="lastName" class="col-sm-2 col-form-label">Last
+                    <label class="col-sm-2 col-form-label">Last
                         Name</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control" name="lastName"
@@ -32,8 +32,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="phone" class="col-sm-2 col-form-label">Last
-                        Name</label>
+                    <label class="col-sm-2 col-form-label">Phone</label>
                     <div class="col-sm-7">
                         <input type="int" pattern="[3][0-9]{9}" name="phone"  required class="form-control"
                                placeholder="Enter phone">
@@ -41,7 +40,7 @@
                 </div>
 
                 <div class=" form-group row">
-                    <label for="lastName" class="col-sm-2 col-form-label">Email</label>
+                    <label class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-7">
                         <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" required class="form-control" name="email"
                                placeholder="Enter email">
@@ -49,13 +48,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="lastName" class="col-sm-2 col-form-label">Password</label>
+                    <label class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-7">
                         <input type="password" class="form-control" name="password"
                                placeholder="Enter Password" required>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input class="btn btn-primary" type="submit" value="Submit">
             </form>
             <p><a href="login.jsp">Login here</a></p>
         </div>

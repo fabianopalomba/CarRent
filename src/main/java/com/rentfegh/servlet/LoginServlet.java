@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         if (userDAOInterface.validate(username,password)){
             request.getSession().setAttribute("email", username);
-            response.sendRedirect("login-success.jsp");
+            response.sendRedirect("success.jsp");
         } else {
             response.sendRedirect("login-failed.jsp");
         }

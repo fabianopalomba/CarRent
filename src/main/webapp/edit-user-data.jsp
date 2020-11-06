@@ -7,34 +7,55 @@
     <title>Title</title>
 </head>
 <body>
+<div class="container">
+    <h1>Register Form:</h1>
+    <div class="card">
+        <div class="card-body">
+            <form action=EditServlet method="post">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">First
+                        Name</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="firstName"
+                               value="${sessionScope.user.firstName}" required>
+                    </div>
+                </div>
 
-<form action="EditServlet" method="post">
-    <table>
-        <tr>
-            <td>First Name:</td>
-            <td><input type="text" name="firstName" required value="${sessionScope.user.firstName}"></td>
-        </tr>
-        <tr>
-            <td>Last Name:</td>
-            <td><input type="text" name="lastName"  required value="${sessionScope.user.lastName}"></td>
-        </tr>
-        <tr>
-            <td>Phone:</td>
-            <td><input type="int" pattern="[3][0-9]{9}" name="phone"  required value="${sessionScope.user.phone}"></td>
-        </tr>
-        <tr>
-            <td>Email:</td>
-            <td><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email" required value="${sessionScope.user.email}"></td>
-        </tr>
-        <tr>
-            <td>Password:</td>
-            <td><input type="password"  name="password" required value="${sessionScope.user.password}"></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Save"></td>
-        </tr>
-    </table>
-</form>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Last
+                        Name</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="lastName"
+                               value="${sessionScope.user.lastName}" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Phone </label>
+                    <div class="col-sm-7">
+                        <input type="int" pattern="[3][0-9]{9}" name="phone"  required class="form-control"
+                               value="${sessionScope.user.phone}">
+                    </div>
+                </div>
 
+                <div class=" form-group row">
+                    <label class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-7">
+                        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required class="form-control" name="email"
+                               value="${sessionScope.user.email}" readonly  >
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" name="password"
+                               value="${sessionScope.user.password}" required>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

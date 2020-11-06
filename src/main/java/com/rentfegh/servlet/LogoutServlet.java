@@ -16,7 +16,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request.getSession().getAttribute("email")!=null  && request.getSession().getAttribute("email")!=""){
             request.getSession().removeAttribute("email");
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 

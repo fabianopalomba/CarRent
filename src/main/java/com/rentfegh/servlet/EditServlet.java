@@ -23,6 +23,6 @@ public class EditServlet extends HttpServlet {
         String password = request.getParameter("password");
         User user = new User(firstName, lastName, phone, email, password);
         userDAOInterface.updateUser(user);
-        response.sendRedirect(request.getContextPath() + "/");
+        response.sendRedirect(request.getContextPath() + "/success.jsp");
     }
 }
